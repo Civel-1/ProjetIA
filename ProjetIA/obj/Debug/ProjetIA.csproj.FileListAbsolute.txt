@@ -1,0 +1,14 @@
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\bin\Debug\ProjetIA.exe.config
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\bin\Debug\ProjetIA.exe
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\bin\Debug\ProjetIA.pdb
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.csprojAssemblyReference.cache
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.Properties.Resources.resources
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.csproj.GenerateResource.cache
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.csproj.CoreCompileInputs.cache
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.exe
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.pdb
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.IndexForm.resources
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.IndexUC.resources
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.EvaluatingUC.resources
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.QCMUC.resources
+C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.QCMResultUC.resources
