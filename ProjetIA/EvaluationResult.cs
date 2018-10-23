@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetIA {
-    public class EvaluationResult {
+namespace ProjetIA
+{
+    public class EvaluationResult
+    {
 
         //Cet objet permet de suivre l'évolution et les résultats de l'utilisateur durant 
         //son examen. Il est initialisé dans IndexForm et est public, chaque UC peut donc le lire

@@ -12,3 +12,14 @@ C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.In
 C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.EvaluatingUC.resources
 C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.QCMUC.resources
 C:\Users\jules\source\repos\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.QCMResultUC.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.csprojResolveAssemblyReference.cache
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.IndexForm.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.Properties.Resources.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.EvaluatingUC.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.IndexUC.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.QCMResultUC.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.QCMUC.resources
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.csproj.GenerateResource.Cache
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.csproj.CoreCompileInputs.cache
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.exe
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.pdb

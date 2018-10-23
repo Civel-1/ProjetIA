@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dijkstra\GenericNode.cs" />
+    <Compile Include="Dijkstra\Graph.cs" />
+    <Compile Include="Dijkstra\SearchTree.cs" />
+    <Compile Include="Dijkstra\XMLGraphReader.cs" />
     <Compile Include="EvaluationResult.cs" />
     <Compile Include="IndexForm.cs">
       <SubType>Form</SubType>
@@ -117,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dijkstra\graph.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
