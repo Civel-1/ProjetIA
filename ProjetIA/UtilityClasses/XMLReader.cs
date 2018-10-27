@@ -9,11 +9,12 @@ namespace ProjetIA {
     class XMLReader {
         //Cette class s'occupe de lire le XML et de faire le mapping et de renvoyer un tableau de Questions
 
+        private String pathFile = @"questions.xml";
 
         internal Question[] getQuestions() {
             
 
-            var xml = XDocument.Load(@"questions.xml");
+            var xml = XDocument.Load(pathFile);
 
             //On récupère toutes les questions
             var result = from question in xml.Descendants("questions").Descendants("question")
@@ -35,7 +36,6 @@ namespace ProjetIA {
                 currentQuestion._question = question.intitule;
                 currentQuestion.id = (int)question.id;
                 
-
 
                 //On ajoute chaque réponse à notre objet
                 foreach (var reponsePossible in question.reponsesPossibles) {

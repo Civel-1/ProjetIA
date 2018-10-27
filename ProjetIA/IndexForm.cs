@@ -56,9 +56,9 @@ namespace ProjetIA {
             Controls.Add(new EvaluatingUC(this));
         }
 
-        public void ChangeToQCM() {
+        public void ChangeToQCM(int questionLeft) {
             Controls.Clear();
-            QCMUC qcmuc = new QCMUC(this);
+            QCMUC qcmuc = new QCMUC(this, questionLeft);
             Controls.Add(qcmuc);
         }
 
