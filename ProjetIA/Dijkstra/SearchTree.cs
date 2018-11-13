@@ -9,8 +9,8 @@ namespace ProjetIA
 {
     class SearchTree
     {
-        public List<GenericNode> OpenedNodes;
-        public List<GenericNode> ClosedNodes;
+        public List<GenericNode> OpenedNodes { get; set; }
+        public List<GenericNode> ClosedNodes { get; set; }
 
         private GenericNode SearchInClosed(GenericNode node)
         {
@@ -38,8 +38,8 @@ namespace ProjetIA
             return null;
         }
 
-        public List<GenericNode> AStarSolve(GenericNode initNode)
-        {
+        public List<GenericNode> DijkstraSolve(Graph graph, GenericNode initNode)
+        { 
             OpenedNodes = new List<GenericNode>();
             ClosedNodes = new List<GenericNode>();
 
@@ -48,7 +48,7 @@ namespace ProjetIA
             OpenedNodes.Add(initNode);
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
-            while (OpenedNodes.Count != 0 && node.EndState == false)
+            while (OpenedNodes.Count != 0 && node.GetEndState() == false)
             {
                 // Le meilleur noeud des ouverts est supposé placé en tête de liste
                 // On le place dans les fermés
@@ -94,42 +94,42 @@ namespace ProjetIA
         {
             // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
             // problème. Elle doit retourner la liste complète des noeuds successeurs de N.
-            List<GenericNode> successors = node.GetListSucc();
+            List<GenericNode> successors = node.GetSuccessors();
 
             foreach (GenericNode successorNode in successors)
             {
                 // N2 est-il une copie d'un nœud déjà vu et placé dans la liste des fermés ?
-                GenericNode N2bis = SearchInClosed(successorNode);
+                GenericNode closedSuccessor = SearchInClosed(successorNode);
 
-                if (N2bis == null)
+                if (closedSuccessor == null)
                 {
                     // Rien dans les fermés. Est-il dans les ouverts ?
-                    N2bis = SearchInOpened(successorNode);
-                    if (N2bis != null)
+                    GenericNode openedSuccessor = SearchInOpened(successorNode);
+
+                    if (openedSuccessor != null)
                     {
                         // Il existe, donc on l'a déjà vu, N2 n'est qu'une copie de N2Bis
                         // Le nouveau chemin passant par N est-il meilleur ?
-                        if (node.GetGCost() + node.GetArcCost(successorNode) < N2bis.GetGCost())
+                        if (node.GCost + node.GetArcCost(successorNode) < openedSuccessor.GCost)
                         {
                             // Mise à jour de N2bis
-                            N2bis.SetGCost(node.GetGCost() + node.GetArcCost(successorNode));
-                            // HCost pas recalculé car toujours bon
-                            N2bis.RecalculeCoutTotal(); // somme de GCost et HCost
+                            // somme de GCost et HCost effectuée à la mise à jour de GCost
+                            openedSuccessor.GCost = node.GCost + node.GetArcCost(successorNode);
+                            // HCost pas recalculé car toujours bon                       
                             // Mise à jour de la famille ....
-                            N2bis.Supprime_Liens_Parent();
-                            N2bis.SetNoeud_Parent(node);
+                            openedSuccessor.FlushParent();
+                            openedSuccessor.ParentNode = node;
                             // Mise à jour des ouverts
-                            OpenedNodes.Remove(N2bis);
-                            this.InsertNewNodeInOpenList(N2bis);
+                            OpenedNodes.Remove(openedSuccessor);
+                            this.InsertNewNodeInOpenList(openedSuccessor);
                         }
                         // else on ne fait rien, car le nouveau chemin est moins bon
                     }
                     else
                     {
                         // N2 est nouveau, MAJ et insertion dans les ouverts
-                        successorNode.SetGCost(node.GetGCost() + node.GetArcCost(successorNode));
-                        successorNode.SetNoeud_Parent(node);
-                        successorNode.calculCoutTotal(); // somme de GCost et HCost
+                        successorNode.GCost = node.GCost + node.GetArcCost(successorNode);
+                        successorNode.ParentNode = node;
                         this.InsertNewNodeInOpenList(successorNode);
                     }
                 }
@@ -142,57 +142,59 @@ namespace ProjetIA
         {
             // Insertion pour respecter l'ordre du cout total le plus petit au plus grand
             if (this.OpenedNodes.Count == 0)
-            { OpenedNodes.Add(NewNode); }
+                OpenedNodes.Add(NewNode);
+            
             else
             {
-                GenericNode N = OpenedNodes[0];
-                bool trouve = false;
+                GenericNode genNode = OpenedNodes[0];
+                bool found = false;
                 int i = 0;
                 do
-                    if (NewNode.Cout_Total < N.Cout_Total)
+                    if (NewNode.TotCost < genNode.TotCost)
                     {
                         OpenedNodes.Insert(i, NewNode);
-                        trouve = true;
+                        found = true;
                     }
                     else
                     {
                         i++;
                         if (OpenedNodes.Count == i)
                         {
-                            N = null;
+                            genNode = null;
                             OpenedNodes.Insert(i, NewNode);
                         }
                         else
-                        { N = OpenedNodes[i]; }
+                        { genNode = OpenedNodes[i]; }
                     }
-                while ((N != null) && (trouve == false));
+                while ((genNode != null) && (found == false));
             }
         }
 
         // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
         // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
-        public void GetSearchTree(TreeView TV)
+        public void GetSearchTree(TreeView treeView)
         {
             if (ClosedNodes == null) return;
             if (ClosedNodes.Count == 0) return;
 
             // On suppose le TreeView préexistant
-            TV.Nodes.Clear();
+            treeView.Nodes.Clear();
 
-            TreeNode TN = new TreeNode(ClosedNodes[0].ToString());
-            TV.Nodes.Add(TN);
+            TreeNode treeNode = new TreeNode(ClosedNodes[0].ToString());
+            treeView.Nodes.Add(treeNode);
 
-            AjouteBranche(ClosedNodes[0], TN);
+            AddBranch(ClosedNodes[0], treeNode);
         }
 
         // AjouteBranche est exclusivement appelée par GetSearchTree; les noeuds sont ajoutés de manière récursive
-        private void AjouteBranche(GenericNode GN, TreeNode TN)
+        private void AddBranch(GenericNode genNode, TreeNode treeNode)
         {
-            foreach (GenericNode GNfils in GN.GetEnfants())
+            foreach (GenericNode childNode in genNode.Children)
             {
-                TreeNode TNfils = new TreeNode(GNfils.ToString());
-                TN.Nodes.Add(TNfils);
-                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils);
+                TreeNode childTreeNode = new TreeNode(childNode.ToString());
+                treeNode.Nodes.Add(childTreeNode);
+                if (childNode.Children.Count > 0)
+                    AddBranch(childNode, childTreeNode);
             }
         }
 

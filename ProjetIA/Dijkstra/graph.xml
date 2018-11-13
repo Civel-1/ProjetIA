@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <graphs>
-  <matrix default="-1">
-    <length>10</length>
-    <value x="0" y="3">3</value>
-    <value x="0" y="2">5</value>
-    <value x="0" y="3">7</value>
-    <value x="1" y="4">8</value>
-    <value x="2" y="4">3</value>
-    <value x="4" y="5">7</value>
-    <value x="5" y="6">4</value>
-    <value x="1" y="0">3</value>
-    <value x="2" y="0">5</value>
-    <value x="3" y="0">7</value>
-    <value x="4" y="1">8</value>
-    <value x="4" y="2">3</value>
-    <value x="5" y="4">7</value>
-    <value x="6" y="5">4</value>
-  </matrix>
+  <graph id="0" default="-1">
+    <nbnodes>10</nbnodes>
+    <img>Dijkstra/img/graphe1.png</img>
+    <rel>0,3,3</rel>
+    <rel>0,2,5</rel>
+    <rel>0,3,7</rel>
+    <rel>1,4,8</rel>
+    <rel>2,4,3</rel>
+    <rel>4,5,7</rel>
+    <rel>5,6,4</rel>
+    <rel>1,0,3</rel>
+    <rel>3,0,7</rel>
+    <rel>4,1,8</rel>
+    <rel>4,2,3</rel>
+    <rel>5,4,7</rel>
+    <rel>6,5,4</rel>
+  </graph>
 </graphs>

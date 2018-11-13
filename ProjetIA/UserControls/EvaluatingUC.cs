@@ -42,7 +42,7 @@ namespace ProjetIA.UserControls {
 
         //Début de l'exercice Dijkstra
         private void ButtonDijkstra_Click(object sender, EventArgs e) {
-
+            mainForm.ChangeToDijkstra();
         }
     }
 }

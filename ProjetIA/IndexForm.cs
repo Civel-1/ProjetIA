@@ -68,5 +68,12 @@ namespace ProjetIA {
             Controls.Add(qcmruc);
         }
 
+        public void ChangeToDijkstra()
+        {
+            Controls.Clear();
+            DijkstraUC djuc = new DijkstraUC(this);
+            Controls.Add(djuc);
+        }
+
     }
 }
