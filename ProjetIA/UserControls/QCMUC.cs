@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetIA.UtilityClasses;
 
 namespace ProjetIA.UserControls {
     public partial class QCMUC : UserControl {
@@ -14,25 +10,34 @@ namespace ProjetIA.UserControls {
         Question currentQuestion;
         private QuestionHandler questionHandler;
         private bool ignoreEvents = false;
-        private int result = 0;
-        private int questionLeft = 20;
-
+        private int result;
+        private int questionLeft;
+        private SaveFileUtility saveFile;
+        private EvaluationResult evalResult;
        
-        //TODO MAKE THIS CLASS SINGLETON
-        public QCMUC(IndexForm _mainForm) {
+        
+        public QCMUC(IndexForm _mainForm, int _questionLeft) {
             InitializeComponent();
 
             mainForm = _mainForm;
             questionHandler = QuestionHandler.Instance;
 
+            questionLeft = _questionLeft;
+            evalResult = EvaluationResult.Instance;
+            result = evalResult.currentScoreQCM;
+
+            //Utilisé pour écrire les résultats
+            saveFile = SaveFileUtility.Instance;
+
             StartEvaluating();
             
         }
 
+
         private void StartEvaluating() {
 
             //Récupère la première question
-            currentQuestion = questionHandler.GetFirstQuestion();
+            currentQuestion = questionHandler.GetNextQuestion();
             //init de la première question
             InitQuestion();
         }
@@ -178,8 +183,8 @@ namespace ProjetIA.UserControls {
 
         //On cloture l'exercice, on met à jour le EvaluationResult puis on lance l'UC QCMResult
         private void EndEvaluation() {
-            mainForm.evalResult.hasDoneQCM = true;
-            mainForm.evalResult.resultQCM = result;
+            evalResult.QCMStatus = EvaluationResult.Status.Done;
+            evalResult.resultQCM = result;
             mainForm.ChangeToQCMResult();
         }
        
@@ -192,10 +197,11 @@ namespace ProjetIA.UserControls {
             if(userAnswer == null) {
                 labelMissingAnswer.Visible = true;
             } else {
+                bool isRight = CheckUserAnswer(userAnswer);
                 labelMissingAnswer.Visible = false;
                 buttonSubmitAnswer.Enabled = false;
                 buttonNextQuestion.Enabled = true;
-                if(CheckUserAnswer(userAnswer)) { //Réponse juste
+                if(isRight) { //Réponse juste
                     labelResultQuestion.Text = "Bravo !";
                     labelResultQuestion.ForeColor = Color.Green;
                     labelResultQuestion.Visible = true;
@@ -207,9 +213,10 @@ namespace ProjetIA.UserControls {
                     labelResultQuestion.Visible = true;
                     questionLeft--;
                 }
-                
+
+                //Ecrire dans l'avancement dans le fichier de sauvegarde
+                saveFile.QCMAddAnswer(currentQuestion.id, isRight);
             }
-           
         }
 
         //Bouton question suivante
