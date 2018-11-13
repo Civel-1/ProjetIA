@@ -26,3 +26,4 @@ C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.pdb
 C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\bin\Debug\ProjetIA.exe.config
 C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\bin\Debug\ProjetIA.exe
 C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\bin\Debug\ProjetIA.pdb
+C:\Users\NATHAN\Desktop\ProjetIA\ProjetIA\obj\Debug\ProjetIA.UserControls.DijkstraUC.resources

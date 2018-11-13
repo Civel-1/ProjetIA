@@ -60,7 +60,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
-    <Compile Include="QuestionHandler.cs" />
     <Compile Include="UserControls\DijkstraUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,7 +90,9 @@
     <Compile Include="UserControls\QCMUC.Designer.cs">
       <DependentUpon>QCMUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="XMLReader.cs" />
+    <Compile Include="UtilityClasses\QuestionHandler.cs" />
+    <Compile Include="UtilityClasses\SaveFileUtility.cs" />
+    <Compile Include="UtilityClasses\XMLReader.cs" />
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,7 +137,6 @@
     <Content Include="Dijkstra\graph.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="questions.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dijkstra\img\" />
