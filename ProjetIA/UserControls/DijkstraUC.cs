@@ -18,19 +18,23 @@ namespace ProjetIA.UserControls
 
         public DijkstraUC(IndexForm _mainForm)
         {
+
             InitializeComponent();
             mainForm = _mainForm;
-
             currentGraph = new Graph();
             DijSolver = new SearchTree();
-            imgGraph.ImageLocation = currentGraph.imgPath;
-
+            
             StartEvaluating();
         }
 
         public void StartEvaluating()
         {
             
+        }
+
+        private void DijkstraUC_Load(object sender, EventArgs e)
+        {
+            mainForm.LoadImage(currentGraph.imgPath, imgGraph);
         }
     }
 }

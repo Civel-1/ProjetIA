@@ -47,6 +47,7 @@
             this.Controls.Add(this.imgGraph);
             this.Name = "DijkstraUC";
             this.Size = new System.Drawing.Size(838, 653);
+            this.Load += new System.EventHandler(this.DijkstraUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).EndInit();
             this.ResumeLayout(false);
 

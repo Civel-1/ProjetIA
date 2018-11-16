@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <graphs>
-  <graph id="0" default="-1">
+  <graph id="0" default="-1" img="graph1.jpg">
     <nbnodes>10</nbnodes>
-    <img>Dijkstra/img/graphe1.png</img>
     <rel>0,3,3</rel>
     <rel>0,2,5</rel>
     <rel>0,3,7</rel>

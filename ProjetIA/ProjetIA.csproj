@@ -137,9 +137,10 @@
     <Content Include="Dijkstra\graph.xml">
       <SubType>Designer</SubType>
     </Content>
+    <EmbeddedResource Include="Dijkstra\img\graph1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dijkstra\img\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

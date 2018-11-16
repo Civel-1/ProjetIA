@@ -75,5 +75,10 @@ namespace ProjetIA {
             Controls.Add(djuc);
         }
 
+        public void LoadImage(string path, PictureBox box)
+        {
+            box.ImageLocation = path;
+        }
+
     }
 }

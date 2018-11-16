@@ -10,7 +10,7 @@ namespace ProjetIA
 {
     public class Graph
     {
-        const string xmlPath = "graph.xml";
+        const string xmlPath = "../../Dijkstra/graph.xml";
         private static Random rnd = new Random();
 
         public int[,] AdjacentMatrix { get; set; }

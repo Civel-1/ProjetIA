@@ -25,16 +25,16 @@ namespace ProjetIA
                          };
 
             //On crée un tableau de la taille du résultat de la requête
-            List<int[,]> matrixes = new List<int[,]> (result.Count());
+            List<int[,]> matrixes = new List<int[,]>();
 
             //On boucle sur les résultats pour créer des objets Questions que l'on ajoute à notre tableau
             int noMatrix = 0;
             foreach (var graph in result)
             {
                 int length = Convert.ToInt32(graph.length);
-                matrixes[noMatrix] = new int[length, length];
+                matrixes.Add(new int[length, length]);
 
-                int defValue = Convert.ToInt32(graph.defvalue);
+                int defValue = (int)graph.defvalue;
 
                 for (int i = 0; i < length; i++)
                     for (int j = 0; j < length; j++)
@@ -68,14 +68,14 @@ namespace ProjetIA
             var result = from graph in xml.Descendants("graphs").Descendants("graph")
                          select new
                          {
-                             imgpath = graph.Descendants("img"),
+                             imgpath = graph.Attribute("img")
                          };
 
-            List<string> paths = new List<string>(result.Count());
+            List<string> paths = new List<string>();
 
             foreach (var graph in result)
             {
-                paths.Add(graph.imgpath.ToString());
+                paths.Add((string)graph.imgpath);
             }
 
             return paths;
