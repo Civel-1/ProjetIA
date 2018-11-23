@@ -35,7 +35,7 @@ namespace ProjetIA.UserControls
             DijSolver = new SearchTree();
 
             NumNode initNode = new NumNode(currentGraph.InitNode, currentGraph);
-            List<List<GenericNode>> OpenedClosedStates = DijSolver.DijkstraSolve(currentGraph, initNode);
+            List<List<GenericNode>> OpenedClosedTracker = DijSolver.DijkstraSolve(currentGraph, initNode);
 
             List<List<string>> AnswersOpenedClosed = new List<List<string>>();          
         }
@@ -85,6 +85,16 @@ namespace ProjetIA.UserControls
             return answerChecked;
         }
 
-        private bool j
+        private bool[] CheckAnswer(List<string> answeredNodes, List<GenericNode> correctOpenedNodes, List<GenericNode> correctClosedNodes)
+        {
+            bool[] areCorrectOpenedClosed = new bool[] { true, true };
+
+            string OpenedId = "";
+            string ClosedId = "";
+
+
+
+            return areCorrectOpenedClosed;
+        }
     }
 }
