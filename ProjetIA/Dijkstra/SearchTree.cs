@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ProjetIA
 {
-    class SearchTree
+    public class SearchTree
     {
         public List<GenericNode> OpenedNodes { get; set; }
         public List<GenericNode> ClosedNodes { get; set; }
@@ -38,14 +38,19 @@ namespace ProjetIA
             return null;
         }
 
-        public List<GenericNode> DijkstraSolve(Graph graph, GenericNode initNode)
-        { 
+        public List<List<GenericNode>> DijkstraSolve(Graph graph, GenericNode initNode)
+        {
+            List<List<GenericNode>> OpenedClosedStates = new List<List<GenericNode>>();
+
             OpenedNodes = new List<GenericNode>();
             ClosedNodes = new List<GenericNode>();
 
             // Le noeud passé en paramètre est supposé être le noeud initial
             GenericNode node = initNode;
             OpenedNodes.Add(initNode);
+
+            OpenedClosedStates.Add(Clone(OpenedNodes));
+            OpenedClosedStates.Add(Clone(ClosedNodes));
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
             while (OpenedNodes.Count != 0 && node.GetEndState() == false)
@@ -58,6 +63,9 @@ namespace ProjetIA
                 // Il faut trouver les noeuds successeurs de N
                 this.UpdateSuccessors(node);
                 // Inutile de retrier car les insertions ont été faites en respectant l'ordre
+
+                OpenedClosedStates.Add(Clone(OpenedNodes));
+                OpenedClosedStates.Add(Clone(ClosedNodes));
 
                 // On prend le meilleur, donc celui en position 0, pour continuer à explorer les états
                 // A condition qu'il existe bien sûr
@@ -87,7 +95,10 @@ namespace ProjetIA
                     path.Insert(0, node);  // On insère en position 1
                 }
             }
-            return path;
+
+            OpenedClosedStates.Add(Clone(path));
+
+            return OpenedClosedStates;
         }
 
         private void UpdateSuccessors(GenericNode node)
@@ -198,5 +209,14 @@ namespace ProjetIA
             }
         }
 
+        private List<GenericNode> Clone(List<GenericNode> initialList)
+        {
+            List<GenericNode> newList = new List<GenericNode>();
+
+            foreach (GenericNode n in initialList)
+                newList.Add(n);
+
+            return newList;
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace ProjetIA
             //On crée un tableau de la taille du résultat de la requête
             List<int[,]> matrixes = new List<int[,]>();
 
-            //On boucle sur les résultats pour créer des objets Questions que l'on ajoute à notre tableau
+            //On boucle sur les résultats pour créer des objets Graph que l'on ajoute à notre tableau
             int noMatrix = 0;
             foreach (var graph in result)
             {
@@ -40,7 +40,7 @@ namespace ProjetIA
                     for (int j = 0; j < length; j++)
                         matrixes[noMatrix][i, j] = defValue;
 
-                //On ajoute chaque réponse à notre objet
+                //On ajoute chaque relations à notre objet
                 foreach (var rel in graph.rel)
                 {
                     string relation = (string)rel;
@@ -64,7 +64,6 @@ namespace ProjetIA
         {
             var xml = XDocument.Load(pathXML);
 
-            //On récupère tous les coefficients de la matrice d'adjacence, ainsi que sa taille
             var result = from graph in xml.Descendants("graphs").Descendants("graph")
                          select new
                          {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetIA
 {
-    class NumNode : GenericNode
+    public class NumNode : GenericNode
     {
         public NumNode(int num, Graph graph) : base (num, graph) { }
 

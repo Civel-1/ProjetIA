@@ -45,7 +45,8 @@ namespace ProjetIA
             set
             {
                 parentNode = value;
-                parentNode.Children.Add(this);
+                if(parentNode != null)
+                    parentNode.Children.Add(this);
             }
         }
 
