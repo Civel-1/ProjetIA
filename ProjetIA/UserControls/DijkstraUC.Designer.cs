@@ -115,6 +115,7 @@
             this.buttonEnd.TabIndex = 8;
             this.buttonEnd.Text = "Terminer";
             this.buttonEnd.UseVisualStyleBackColor = true;
+            this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
             // 
             // treeView
             // 

@@ -15,6 +15,8 @@ namespace ProjetIA.UserControls
         private IndexForm mainForm;
         private Graph currentGraph;
         private SearchTree DijSolver;
+        private List<List<GenericNode>> OpenedClosedTracker;
+        private List<List<string>> AnswersOpenedClosed;
         private char[] alphabet = new char[] 
         {
             'A', 'B', 'C', 'D', 'E', 'F', 'G',
@@ -28,24 +30,22 @@ namespace ProjetIA.UserControls
 
             InitializeComponent();
             mainForm = _mainForm;
+
             currentGraph = new Graph();
             DijSolver = new SearchTree();
-            
-            StartEvaluating();
-        }
-
-        public void StartEvaluating()
-        {
-            dataGridViewOuvertsFermes.Columns.Add("Opened", "Ouverts");
-            dataGridViewOuvertsFermes.Columns.Add("Closed", "Fermés");
 
             NumNode initNode = new NumNode(currentGraph.InitNode, currentGraph);
             List<List<GenericNode>> OpenedClosedStates = DijSolver.DijkstraSolve(currentGraph, initNode);
+
+            List<List<string>> AnswersOpenedClosed = new List<List<string>>();          
         }
 
         private void DijkstraUC_Load(object sender, EventArgs e)
         {
             mainForm.LoadImage(currentGraph.imgPath, imgGraph);
+
+            dataGridViewOuvertsFermes.Columns.Add("Opened", "Ouverts");
+            dataGridViewOuvertsFermes.Columns.Add("Closed", "Fermés");
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)
@@ -54,17 +54,24 @@ namespace ProjetIA.UserControls
 
             if (textBoxOuverts.Text != "" || textBoxFermes.Text != "")
             {
-                openedClosedSubmitted[0] = AnswerFormatCheck(textBoxOuverts.Text);
-                openedClosedSubmitted[1] = AnswerFormatCheck(textBoxFermes.Text);
+                openedClosedSubmitted[0] = FormatAnswer(textBoxOuverts.Text);
+                openedClosedSubmitted[1] = FormatAnswer(textBoxFermes.Text);
 
                 dataGridViewOuvertsFermes.Rows.Add(openedClosedSubmitted);
+
+                AnswersOpenedClosed.Add(new List<string>() { openedClosedSubmitted[0], openedClosedSubmitted[1] });
             }
 
             textBoxOuverts.Clear();
             textBoxFermes.Clear();
         }
 
-        private string AnswerFormatCheck(string answer)
+        private void buttonEnd_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private string FormatAnswer(string answer)
         {
             List<char> answerBreakdown = answer.ToUpper().ToList();
             string answerChecked = "";
@@ -77,5 +84,7 @@ namespace ProjetIA.UserControls
 
             return answerChecked;
         }
+
+        private bool j
     }
 }

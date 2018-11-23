@@ -40,7 +40,7 @@ namespace ProjetIA
 
         public List<List<GenericNode>> DijkstraSolve(Graph graph, GenericNode initNode)
         {
-            List<List<GenericNode>> OpenedClosedStates = new List<List<GenericNode>>();
+            List<List<GenericNode>> OpenedClosedTracker = new List<List<GenericNode>>();
 
             OpenedNodes = new List<GenericNode>();
             ClosedNodes = new List<GenericNode>();
@@ -49,8 +49,8 @@ namespace ProjetIA
             GenericNode node = initNode;
             OpenedNodes.Add(initNode);
 
-            OpenedClosedStates.Add(Clone(OpenedNodes));
-            OpenedClosedStates.Add(Clone(ClosedNodes));
+            OpenedClosedTracker.Add(Clone(OpenedNodes));
+            OpenedClosedTracker.Add(Clone(ClosedNodes));
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
             while (OpenedNodes.Count != 0 && node.GetEndState() == false)
@@ -64,8 +64,8 @@ namespace ProjetIA
                 this.UpdateSuccessors(node);
                 // Inutile de retrier car les insertions ont été faites en respectant l'ordre
 
-                OpenedClosedStates.Add(Clone(OpenedNodes));
-                OpenedClosedStates.Add(Clone(ClosedNodes));
+                OpenedClosedTracker.Add(Clone(OpenedNodes));
+                OpenedClosedTracker.Add(Clone(ClosedNodes));
 
                 // On prend le meilleur, donc celui en position 0, pour continuer à explorer les états
                 // A condition qu'il existe bien sûr
@@ -96,9 +96,9 @@ namespace ProjetIA
                 }
             }
 
-            OpenedClosedStates.Add(Clone(path));
+            OpenedClosedTracker.Add(Clone(path));
 
-            return OpenedClosedStates;
+            return OpenedClosedTracker;
         }
 
         private void UpdateSuccessors(GenericNode node)
