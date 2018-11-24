@@ -14,7 +14,7 @@ namespace ProjetIA.UserControls
     {
         private IndexForm mainForm;
         private Graph currentGraph;
-        private SearchTree DijSolver;
+        private SearchTree dijSolver;
         private List<List<GenericNode>> OpenedClosedTracker;
         private List<List<string>> AnswersOpenedClosed;
         private char[] alphabet = new char[] 
@@ -32,12 +32,11 @@ namespace ProjetIA.UserControls
             mainForm = _mainForm;
 
             currentGraph = new Graph();
-            DijSolver = new SearchTree();
+            dijSolver = new SearchTree();
 
             NumNode initNode = new NumNode(currentGraph.InitNode, currentGraph);
-            List<List<GenericNode>> OpenedClosedTracker = DijSolver.DijkstraSolve(currentGraph, initNode);
-
-            List<List<string>> AnswersOpenedClosed = new List<List<string>>();          
+            OpenedClosedTracker = dijSolver.DijkstraSolve(currentGraph, initNode);
+            AnswersOpenedClosed = new List<List<string>>();          
         }
 
         private void DijkstraUC_Load(object sender, EventArgs e)
