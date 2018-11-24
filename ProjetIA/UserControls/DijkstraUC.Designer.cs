@@ -36,7 +36,9 @@
             this.labelFermes = new System.Windows.Forms.Label();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.buttonEnd = new System.Windows.Forms.Button();
-            this.treeView = new System.Windows.Forms.TreeView();
+            this.treeViewDijkstra = new System.Windows.Forms.TreeView();
+            this.textBoxNode = new System.Windows.Forms.TextBox();
+            this.submitNode = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOuvertsFermes)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +46,7 @@
             // imgGraph
             // 
             this.imgGraph.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.imgGraph.Location = new System.Drawing.Point(6, 3);
+            this.imgGraph.Location = new System.Drawing.Point(10, 3);
             this.imgGraph.MaximumSize = new System.Drawing.Size(850, 400);
             this.imgGraph.Name = "imgGraph";
             this.imgGraph.Size = new System.Drawing.Size(850, 400);
@@ -117,12 +119,31 @@
             this.buttonEnd.UseVisualStyleBackColor = true;
             this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
             // 
-            // treeView
+            // treeViewDijkstra
             // 
-            this.treeView.Location = new System.Drawing.Point(329, 524);
-            this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(346, 262);
-            this.treeView.TabIndex = 9;
+            this.treeViewDijkstra.Location = new System.Drawing.Point(329, 524);
+            this.treeViewDijkstra.Name = "treeViewDijkstra";
+            this.treeViewDijkstra.Size = new System.Drawing.Size(333, 262);
+            this.treeViewDijkstra.TabIndex = 9;
+            this.treeViewDijkstra.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDijkstra_AfterSelect);
+            // 
+            // textBoxNode
+            // 
+            this.textBoxNode.Location = new System.Drawing.Point(706, 549);
+            this.textBoxNode.Name = "textBoxNode";
+            this.textBoxNode.Size = new System.Drawing.Size(52, 22);
+            this.textBoxNode.TabIndex = 10;
+            // 
+            // submitNode
+            // 
+            this.submitNode.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submitNode.Location = new System.Drawing.Point(668, 543);
+            this.submitNode.Name = "submitNode";
+            this.submitNode.Size = new System.Drawing.Size(32, 34);
+            this.submitNode.TabIndex = 11;
+            this.submitNode.Text = "<";
+            this.submitNode.UseVisualStyleBackColor = true;
+            this.submitNode.Click += new System.EventHandler(this.submitNode_Click);
             // 
             // DijkstraUC
             // 
@@ -130,7 +151,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.treeView);
+            this.Controls.Add(this.submitNode);
+            this.Controls.Add(this.textBoxNode);
+            this.Controls.Add(this.treeViewDijkstra);
             this.Controls.Add(this.buttonEnd);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.labelFermes);
@@ -140,7 +163,7 @@
             this.Controls.Add(this.textBoxOuverts);
             this.Controls.Add(this.imgGraph);
             this.Name = "DijkstraUC";
-            this.Size = new System.Drawing.Size(862, 804);
+            this.Size = new System.Drawing.Size(871, 804);
             this.Load += new System.EventHandler(this.DijkstraUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOuvertsFermes)).EndInit();
@@ -159,6 +182,8 @@
         private System.Windows.Forms.Label labelFermes;
         private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.Button buttonEnd;
-        private System.Windows.Forms.TreeView treeView;
+        private System.Windows.Forms.TreeView treeViewDijkstra;
+        private System.Windows.Forms.TextBox textBoxNode;
+        private System.Windows.Forms.Button submitNode;
     }
 }

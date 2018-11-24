@@ -62,7 +62,15 @@ namespace ProjetIA
 
         public override string ToString()
         {
-            return Convert.ToString(Num);
+            char[] alphabet = new char[]
+            {
+            'A', 'B', 'C', 'D', 'E', 'F', 'G',
+            'H', 'I', 'J', 'K', 'L', 'M', 'O',
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+            'W', 'X', 'Y', 'Z'
+            };
+
+            return Convert.ToString(alphabet[Num]);
         }
     }
 }

@@ -183,7 +183,7 @@ namespace ProjetIA
 
         // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
         // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
-        public void GetSearchTree(TreeView treeView)
+        public void GetSearchTree(TreeView treeView, bool isEmpty)
         {
             if (ClosedNodes == null) return;
             if (ClosedNodes.Count == 0) return;
@@ -191,21 +191,32 @@ namespace ProjetIA
             // On suppose le TreeView préexistant
             treeView.Nodes.Clear();
 
-            TreeNode treeNode = new TreeNode(ClosedNodes[0].ToString());
+            TreeNode treeNode;
+            if (isEmpty)
+                treeNode = new TreeNode("...");
+            else
+                treeNode = new TreeNode(ClosedNodes[0].ToString());
+
             treeView.Nodes.Add(treeNode);
 
-            AddBranch(ClosedNodes[0], treeNode);
+            AddBranch(ClosedNodes[0], treeNode, isEmpty);
         }
 
         // AjouteBranche est exclusivement appelée par GetSearchTree; les noeuds sont ajoutés de manière récursive
-        private void AddBranch(GenericNode genNode, TreeNode treeNode)
+        private void AddBranch(GenericNode genNode, TreeNode treeNode, bool isEmpty)
         {
             foreach (GenericNode childNode in genNode.Children)
             {
-                TreeNode childTreeNode = new TreeNode(childNode.ToString());
+                TreeNode childTreeNode;
+
+                if(isEmpty)
+                   childTreeNode = new TreeNode("...");
+                else
+                    childTreeNode = new TreeNode(childNode.ToString());
+
                 treeNode.Nodes.Add(childTreeNode);
                 if (childNode.Children.Count > 0)
-                    AddBranch(childNode, childTreeNode);
+                    AddBranch(childNode, childTreeNode, isEmpty);
             }
         }
 
