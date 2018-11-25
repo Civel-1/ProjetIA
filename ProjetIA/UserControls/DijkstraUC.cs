@@ -16,8 +16,7 @@ namespace ProjetIA.UserControls
         private Graph currentGraph;
         private NumNode initNode;
         private SearchTree dijSolver;
-        private List<List<GenericNode>> OpenedClosedTracker;
-        private List<List<string>> AnswersOpenedClosed;
+        private List<List<GenericNode>> openedClosedTracker;
         
         public DijkstraUC(IndexForm _mainForm)
         {
@@ -29,8 +28,7 @@ namespace ProjetIA.UserControls
             dijSolver = new SearchTree();
 
             initNode = new NumNode(currentGraph.InitNode, currentGraph);
-            OpenedClosedTracker = dijSolver.DijkstraSolve(currentGraph, initNode);
-            AnswersOpenedClosed = new List<List<string>>();          
+            openedClosedTracker = dijSolver.DijkstraSolve(currentGraph, initNode);       
         }
 
         private void DijkstraUC_Load(object sender, EventArgs e)
@@ -58,8 +56,6 @@ namespace ProjetIA.UserControls
                 openedClosedSubmitted[1] = FormatAnswer(textBoxFermes.Text);
 
                 dataGridViewOuvertsFermes.Rows.Add(openedClosedSubmitted);
-
-                AnswersOpenedClosed.Add(new List<string>() { openedClosedSubmitted[0], openedClosedSubmitted[1] });
             }
 
             textBoxOuverts.Clear();
@@ -69,48 +65,7 @@ namespace ProjetIA.UserControls
         private void buttonEnd_Click(object sender, EventArgs e)
         {
             CheckTreeAnswers();
-        }
-
-        private string FormatAnswer(string answer)
-        {
-            char[] alphabet = new char[]
-            {
-                'A', 'B', 'C', 'D', 'E', 'F', 'G',
-                'H', 'I', 'J', 'K', 'L', 'M', 'O',
-                'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-                'W', 'X', 'Y', 'Z'
-            };
-
-            List<char> answerBreakdown = answer.ToUpper().ToList();
-            string answerChecked = "";
-
-            foreach (char c in answerBreakdown)
-            {
-                if (alphabet.Contains(c))
-                    answerChecked += c.ToString();
-            }
-
-            return answerChecked;
-        }
-
-        private bool[] CheckOpenedClosedAnswer(List<string> answeredNodes, List<GenericNode> correctOpenedNodes, List<GenericNode> correctClosedNodes)
-        {
-            bool[] areCorrectOpenedClosed = new bool[] { true, true };
-
-            string openedId = "";
-            string closedId = "";
-
-            foreach (GenericNode gn in correctOpenedNodes)
-                openedId += gn.ToString();
-            foreach (GenericNode gn in correctClosedNodes)
-                closedId += gn.ToString();
-
-            if (answeredNodes[0].Count() != openedId.Count() || !answeredNodes[0].Contains(openedId))
-                areCorrectOpenedClosed[0] = false;
-            if (answeredNodes[1].Count() != closedId.Count() || !answeredNodes[1].Contains(closedId))
-                areCorrectOpenedClosed[1] = false;
-
-            return areCorrectOpenedClosed;
+            CheckOpenedClosedAnswer();
         }
 
         private void submitNode_Click(object sender, EventArgs e)
@@ -173,6 +128,79 @@ namespace ProjetIA.UserControls
                 else
                     return;
             }
+        }
+
+        private bool CheckOpenedClosedAnswer()
+        {
+            bool isCorrect = true;
+
+            List<string> openedClosedIdTracker = GetNodesTrackerId(openedClosedTracker);
+
+            int indexMax = Math.Min(dataGridViewOuvertsFermes.RowCount, openedClosedIdTracker.Count);
+
+            for(int i = 0; i < indexMax; i++)
+            {
+                for (int j = 0; j < dataGridViewOuvertsFermes.ColumnCount; j++)
+                {
+                    if (!(dataGridViewOuvertsFermes.Rows[i].Cells[j].Value as string).Contains(openedClosedIdTracker[2 * i + j]))
+                    {
+                        dataGridViewOuvertsFermes.Rows[i].Cells[j].Style.ForeColor = Color.Red;
+                        isCorrect = false;
+                    }
+                    else
+                        dataGridViewOuvertsFermes.Rows[i].Cells[j].Style.ForeColor = Color.Green;
+                }
+            }
+
+            if(indexMax < dataGridViewOuvertsFermes.RowCount)
+            {
+                for(int i = indexMax; i < dataGridViewOuvertsFermes.RowCount; i++)
+                    for (int j = 0; j < dataGridViewOuvertsFermes.ColumnCount; j++)
+                        dataGridViewOuvertsFermes.Rows[i].Cells[j].Style.ForeColor = Color.Red;
+   
+                isCorrect = false;
+            }
+
+            return isCorrect;
+        }
+
+        private List<string> GetNodesTrackerId(List<List<GenericNode>> nodesTracker)
+        {
+            List<string> nodesIdTracker = new List<string>();
+
+            foreach (List<GenericNode> gnList in nodesTracker)
+            {
+                string nodesId = "";
+
+                foreach (GenericNode gn in gnList)
+                    nodesId += gn.ToString();
+
+                 nodesIdTracker.Add(nodesId);
+            }
+
+            return nodesIdTracker;
+        }
+
+        private string FormatAnswer(string answer)
+        {
+            char[] alphabet = new char[]
+            {
+                'A', 'B', 'C', 'D', 'E', 'F', 'G',
+                'H', 'I', 'J', 'K', 'L', 'M', 'O',
+                'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+                'W', 'X', 'Y', 'Z'
+            };
+
+            List<char> answerBreakdown = answer.ToUpper().ToList();
+            string answerChecked = "";
+
+            foreach (char c in answerBreakdown)
+            {
+                if (alphabet.Contains(c))
+                    answerChecked += c.ToString();
+            }
+
+            return answerChecked;
         }
     }
 }
