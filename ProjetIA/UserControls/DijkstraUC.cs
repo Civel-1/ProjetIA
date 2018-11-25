@@ -17,18 +17,18 @@ namespace ProjetIA.UserControls
         private NumNode initNode;
         private SearchTree dijSolver;
         private List<List<GenericNode>> openedClosedTracker;
+        private EvaluationResult evalResult;
         
         public DijkstraUC(IndexForm _mainForm)
         {
-
             InitializeComponent();
             mainForm = _mainForm;
-
             currentGraph = new Graph();
             dijSolver = new SearchTree();
-
             initNode = new NumNode(currentGraph.InitNode, currentGraph);
-            openedClosedTracker = dijSolver.DijkstraSolve(currentGraph, initNode);       
+            openedClosedTracker = dijSolver.DijkstraSolve(currentGraph, initNode);
+            evalResult = EvaluationResult.Instance;
+            evalResult.DijkstraStatus = EvaluationResult.Status.In_Progress;
         }
 
         private void DijkstraUC_Load(object sender, EventArgs e)
@@ -64,16 +64,25 @@ namespace ProjetIA.UserControls
 
         private void buttonEnd_Click(object sender, EventArgs e)
         {
-            CheckTreeAnswers();
-            CheckOpenedClosedAnswer();
+            bool isTreeCorrect = CheckTreeAnswers();
+            bool isOpenedClosedCorrect = CheckOpenedClosedAnswer();
+
+            evalResult.resultDijkstra = 0;
+
+            if (isOpenedClosedCorrect)
+                evalResult.resultDijkstra += 2;
+            if (isTreeCorrect)
+                evalResult.resultDijkstra += 1;
+            
+            evalResult.DijkstraStatus = EvaluationResult.Status.Done;
+
+            InactivateInteractions();
         }
 
         private void submitNode_Click(object sender, EventArgs e)
         {
             if(textBoxNode.Text != null && treeViewDijkstra.SelectedNode != null)
-            {
-                treeViewDijkstra.SelectedNode.Text = FormatAnswer(textBoxNode.Text);
-            }
+                treeViewDijkstra.SelectedNode.Text = FormatAnswer(textBoxNode.Text);         
         }
 
         private void treeViewDijkstra_AfterSelect(object sender, TreeViewEventArgs e)
@@ -121,10 +130,8 @@ namespace ProjetIA.UserControls
 
             foreach (TreeNode tn in nodes)
             {
-                if (tn.Nodes != null)
-                { 
+                if (tn.Nodes != null) 
                     GetAllNodes(tn.Nodes, nodesList);
-                }
                 else
                     return;
             }
@@ -201,6 +208,21 @@ namespace ProjetIA.UserControls
             }
 
             return answerChecked;
+        }
+
+        private void InactivateInteractions()
+        {
+            dataGridViewOuvertsFermes.Enabled = false;
+            treeViewDijkstra.ExpandAll();
+            treeViewDijkstra.Enabled = false;
+            textBoxFermes.Enabled = false;
+            textBoxFermes.Text = null;
+            textBoxOuverts.Enabled = false;
+            textBoxOuverts.Text = null;
+            textBoxNode.Enabled = false;
+            textBoxNode.Text = null;
+            buttonSubmit.Enabled = false;
+            submitNode.Enabled = false;
         }
     }
 }
