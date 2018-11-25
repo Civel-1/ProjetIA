@@ -113,24 +113,6 @@ namespace ProjetIA.UserControls
             return areCorrectOpenedClosed;
         }
 
-        private void CheckTreeAnswers()
-        {
-            bool emptyTree = false;
-            TreeView treeViewCorrection = new TreeView();
-            dijSolver.GetSearchTree(treeViewCorrection, emptyTree);
-
-            for (int i = 0; i < treeViewDijkstra.Nodes.Count; i++)
-            {
-                if (treeViewDijkstra.Nodes[i] != treeViewCorrection.Nodes[i])
-                {
-                    treeViewDijkstra.Nodes[i].ForeColor = Color.Red;
-                    treeViewDijkstra.Nodes[i].Text += " -> " + treeViewCorrection.Nodes[i].Text;
-                }
-                else
-                    treeViewDijkstra.Nodes[i].ForeColor = Color.Green;
-            }
-        }
-
         private void submitNode_Click(object sender, EventArgs e)
         {
             if(textBoxNode.Text != null && treeViewDijkstra.SelectedNode != null)
@@ -143,6 +125,54 @@ namespace ProjetIA.UserControls
         {
             if(treeViewDijkstra.SelectedNode.Text != "...")
                 textBoxNode.Text = treeViewDijkstra.SelectedNode.Text;
+            else
+                textBoxNode.Text = null;
+        }
+
+        private bool CheckTreeAnswers()
+        {
+            bool emptyTree = false;
+            TreeView treeViewCorrection = new TreeView();
+            dijSolver.GetSearchTree(treeViewCorrection, emptyTree);
+
+            List<TreeNodeCollection> answeredNodes = new List<TreeNodeCollection>();
+            List<TreeNodeCollection> correctNodes = new List<TreeNodeCollection>();
+            GetAllNodes(treeViewDijkstra.Nodes, answeredNodes);
+            GetAllNodes(treeViewCorrection.Nodes, correctNodes);
+
+            bool isCorrect = true;
+
+            for(int i = 0; i < answeredNodes.Count(); i++)
+            {
+                for(int j = 0; j < answeredNodes[i].Count; j++)
+                {
+                    if (answeredNodes[i][j].Text != correctNodes[i][j].Text)
+                    {
+                        answeredNodes[i][j].ForeColor = Color.Red;
+                        answeredNodes[i][j].Text += " -> " + correctNodes[i][j].Text;
+                        isCorrect = false;
+                    }
+                    else
+                        answeredNodes[i][j].ForeColor = Color.Green;
+                }
+            }
+
+            return isCorrect;
+        }
+
+        private void GetAllNodes(TreeNodeCollection nodes, List<TreeNodeCollection> nodesList)
+        {
+            nodesList.Add(nodes);
+
+            foreach (TreeNode tn in nodes)
+            {
+                if (tn.Nodes != null)
+                { 
+                    GetAllNodes(tn.Nodes, nodesList);
+                }
+                else
+                    return;
+            }
         }
     }
 }
