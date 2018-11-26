@@ -13,7 +13,7 @@ namespace Dijkstra_test
         {
             Graph currentGraph = new Graph();
             SearchTree DijSolver = new SearchTree();
-            NumNode initNode = new NumNode(currentGraph.InitNode, currentGraph);
+            AlphaBetNode initNode = new AlphaBetNode(currentGraph.InitNode, currentGraph);
             List<List<GenericNode>> OpenedClosedStates = DijSolver.DijkstraSolve(currentGraph, initNode);
 
             foreach(List<GenericNode> lGnode in OpenedClosedStates)

@@ -7,8 +7,15 @@ using System.Xml.Linq;
 
 namespace ProjetIA
 {
+    /// <summary>
+    /// Utilitaire de lecture de fichier XML, permettant de récupérer les données relatives à la conception et l'affichage
+    /// d'un graphe.
+    /// </summary>
     class XMLGraphReader
     {
+        /// <summary>
+        /// Renvoie l'ensemble des matrices d'adjacences définies dans le fichier XML spécifié.
+        /// </summary>
         internal List<int[,]> getMatrixes(string pathXML)
         {
             var xml = XDocument.Load(pathXML);
@@ -24,10 +31,9 @@ namespace ProjetIA
                              rel = graph.Descendants("rel")
                          };
 
-            //On crée un tableau de la taille du résultat de la requête
             List<int[,]> matrixes = new List<int[,]>();
 
-            //On boucle sur les résultats pour créer des objets Graph que l'on ajoute à notre tableau
+            //Remplissage des matrices d'adjacences.
             int noMatrix = 0;
             foreach (var graph in result)
             {
@@ -40,7 +46,6 @@ namespace ProjetIA
                     for (int j = 0; j < length; j++)
                         matrixes[noMatrix][i, j] = defValue;
 
-                //On ajoute chaque relations à notre objet
                 foreach (var rel in graph.rel)
                 {
                     string relation = (string)rel;
@@ -60,6 +65,9 @@ namespace ProjetIA
             return matrixes;
         }
 
+        /// <summary>
+        /// Renvoie les chemins d'accès au immages des graphes.
+        /// </summary>
         internal List<string> getPath(string pathXML)
         {
             var xml = XDocument.Load(pathXML);

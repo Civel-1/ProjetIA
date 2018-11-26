@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Dijkstra\GenericNode.cs" />
     <Compile Include="Dijkstra\Graph.cs" />
-    <Compile Include="Dijkstra\NumNode.cs" />
+    <Compile Include="Dijkstra\AlphaBetNode.cs" />
     <Compile Include="Dijkstra\SearchTree.cs" />
     <Compile Include="Dijkstra\XMLGraphReader.cs" />
     <Compile Include="Beans\EvaluationResult.cs" />

@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace ProjetIA
 {
-    public class NumNode : GenericNode
+    /// <summary>
+    /// Classe héritant de GenericNode. Représente des noeuds identifiés par des lettres.
+    /// </summary>
+    public class AlphaBetNode : GenericNode
     {
-        public NumNode(int num, Graph graph) : base (num, graph) { }
+        public AlphaBetNode(int num, Graph graph) : base (num, graph) { }
 
         public override bool IsEqual(GenericNode genNode)
         {
-            NumNode numNode = (NumNode)genNode;
-            return Num == numNode.Num;
+            AlphaBetNode alphaNode = (AlphaBetNode)genNode;
+            return Num == alphaNode.Num;
         }
 
         /// <summary>
@@ -23,8 +26,8 @@ namespace ProjetIA
         /// <returns></returns>
         public override double GetArcCost(GenericNode genNode)
         {
-            NumNode numNode = (NumNode)genNode;
-            return graph.AdjacentMatrix[Num, numNode.Num];
+            AlphaBetNode alphaNode = (AlphaBetNode)genNode;
+            return graph.AdjacentMatrix[Num, alphaNode.Num];
         }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace ProjetIA
             {
                 if (graph.AdjacentMatrix[Num, i] != -1)
                 {
-                    NumNode successor = new NumNode(i, graph);
+                    AlphaBetNode successor = new AlphaBetNode(i, graph);
                     successors.Add(successor);
                 }
             }
@@ -60,6 +63,7 @@ namespace ProjetIA
             return (Num == graph.EndNode);
         }
 
+        //ToString() renvoie l'identifiant alphabétique correspondant à l'identifiant numérique des AlphaBetNodes.
         public override string ToString()
         {
             char[] alphabet = new char[]

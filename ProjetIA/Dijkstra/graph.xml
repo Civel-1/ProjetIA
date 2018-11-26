@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
+<!--Déclaration de graphes-->
+<!-- 
+Attributs de "graph"
+
+id : identifiant du graphe
+default : valeur par défaut d'un arc dans la matrice d'adjacence, en cas d'absence de relation entre les noeuds. 
+          Elle est généralement de -1.
+img : Chemin d'accès des images de graphe dans le répertoire de la solution. En cas d'ajout de nouvelles images, il est nécessaire
+      de les ajouter en tant que ressources incorporées, ou de définir leur chemin d'accès en fonction du répertoire de sortie (bin/Debug...).
+
+Balises
+
+nbnodes : Nombres de noeuds du graphe
+rel : Définit une relation x,y,c entre deux noeuds. x,y : identifiants numériques des noeuds X et Y en relation. c : coût de l'arc XY.
+-->
 <graphs>
   <graph id="0" default="-1" img="Dijkstra/img/graph1.jpg">
     <nbnodes>10</nbnodes>

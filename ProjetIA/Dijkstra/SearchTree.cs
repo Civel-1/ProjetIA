@@ -7,12 +7,25 @@ using System.Windows.Forms;
 
 namespace ProjetIA
 {
+    /// <summary>
+    /// Classe singleton permettant d'obtenir un solveur de problème de plus court chemin. Ce solveur utilise 
+    /// l'algorithme de Dijkstra.
+    /// </summary>
     public class SearchTree
     {
+        /// <summary>
+        /// Liste des ouverts.
+        /// </summary>
         public List<GenericNode> OpenedNodes { get; set; }
+        /// <summary>
+        /// Liste des fermés.
+        /// </summary>
         public List<GenericNode> ClosedNodes { get; set; }
         private static SearchTree instance;
 
+        /// <summary>
+        /// Instance unique de SearchTree.
+        /// </summary>
         public static SearchTree Instance
         {
             get
@@ -24,7 +37,9 @@ namespace ProjetIA
             }
         }
 
-
+        /// <summary>
+        /// Renvoie le noeud clone trouvé dans les fermés.
+        /// </summary>
         private GenericNode SearchInClosed(GenericNode node)
         {
             int i = 0;
@@ -38,6 +53,9 @@ namespace ProjetIA
             return null;
         }
 
+        /// <summary>
+        /// Renvoie le noeud clone trouvé dans les ouverts.
+        /// </summary>
         private GenericNode SearchInOpened(GenericNode node)
         {
             int i = 0;
@@ -51,6 +69,12 @@ namespace ProjetIA
             return null;
         }
 
+        /// <summary>
+        /// Résout un problème de plus court chemin à l'aide de l'algorithme de Dijkstra.
+        /// La méthode parcourt un graphe graph à partir d'un noeud initital initNode.
+        /// Elle renvoie un tracker des différentes listes d'ouverts et de fermés produites à chaque étape 
+        /// de recherche. 
+        /// </summary>
         public List<List<GenericNode>> DijkstraSolve(Graph graph, GenericNode initNode)
         {
             List<List<GenericNode>> OpenedClosedTracker = new List<List<GenericNode>>();
@@ -73,7 +97,7 @@ namespace ProjetIA
                 OpenedNodes.Remove(node);
                 ClosedNodes.Add(node);
 
-                // Il faut trouver les noeuds successeurs de N
+                // Il faut trouver les noeuds successeurs de node
                 this.UpdateSuccessors(node);
                 // Inutile de retrier car les insertions ont été faites en respectant l'ordre
 
@@ -83,33 +107,12 @@ namespace ProjetIA
                 // On prend le meilleur, donc celui en position 0, pour continuer à explorer les états
                 // A condition qu'il existe bien sûr
                 if (OpenedNodes.Count > 0)
-                {
                     node = OpenedNodes[0];
-                }
                 else
-                {
                     node = null;
-                }
             }
 
-            // A* terminé
-            // On retourne le chemin qui va du noeud initial au noeud final sous forme de liste
-            // Le chemin est retrouvé en partant du noeud final et en accédant aux parents de manière
-            // itérative jusqu'à ce qu'on tombe sur le noeud initial
-
-            List<GenericNode> path = new List<GenericNode>();
-            if (node != null)
-            {
-                path.Add(node);
-
-                while (node != initNode)
-                {
-                    node = node.ParentNode;
-                    path.Insert(0, node);  // On insère en position 1
-                }
-            }
-
-            OpenedClosedTracker.Add(Clone(path));
+            // Dijstra terminé.
 
             return OpenedClosedTracker;
         }
@@ -194,8 +197,11 @@ namespace ProjetIA
             }
         }
 
-        // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
-        // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
+       /// <summary>
+       /// Rempli un TreeView avec l'abre de recherche de l'algorithme de Dijkstra. Peut renvoyer un arbre sans texte 
+       /// ou disposant à chaque noeud un identifiant alphabétique.
+       /// </summary>
+       /// <param name="isEmpty">si true, la méthode renvoie un arbre sans texte.</param>
         public void GetSearchTree(TreeView treeView, bool isEmpty)
         {
             if (ClosedNodes == null) return;
@@ -233,6 +239,9 @@ namespace ProjetIA
             }
         }
 
+        /// <summary>
+        /// Copie les références vers les noeuds d'une liste dans une autre.
+        /// </summary>
         private List<GenericNode> Clone(List<GenericNode> initialList)
         {
             List<GenericNode> newList = new List<GenericNode>();

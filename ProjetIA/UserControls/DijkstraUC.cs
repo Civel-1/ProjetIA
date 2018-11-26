@@ -26,11 +26,11 @@ namespace ProjetIA.UserControls
         /// <summary>
         /// Noeud de départ du problème.
         /// </summary>
-        private NumNode initNode;
+        private AlphaBetNode initNode;
         /// <summary>
         /// Noeud d'arrivée (résolution du problème).
         /// </summary>
-        private NumNode endNode;
+        private AlphaBetNode endNode;
         private SearchTree dijSolver;
         /// <summary>
         /// Liste contenant les listes d'ouverts et de fermés successivement générées par 
@@ -47,8 +47,8 @@ namespace ProjetIA.UserControls
             currentGraph = new Graph();
             dijSolver = SearchTree.Instance;
 
-            initNode = new NumNode(currentGraph.InitNode, currentGraph);
-            endNode = new NumNode(currentGraph.EndNode, currentGraph);
+            initNode = new AlphaBetNode(currentGraph.InitNode, currentGraph);
+            endNode = new AlphaBetNode(currentGraph.EndNode, currentGraph);
 
             //Obtention des listes d'ouverts et de fermés successifs générées par le solveur appliqué 
             //sur le graphe courant.

@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 
 namespace ProjetIA
 {
-    // classe abstraite, il est donc impératif de créer une classe qui en hérite
+    // Classe abstraite, il est donc impératif de créer une classe qui en hérite
     // pour résoudre un problème particulier en y ajoutant des infos liées au contexte du problème
     abstract public class GenericNode
     {
         public int Num { get; protected set; }
-        protected double gCost;           //coût du chemin du noeud initial jusqu'à ce noeud
-        protected double hCost;               //estimation heuristique du coût pour atteindre le noeud final
-        public double TotCost { get; protected set; }           //coût total (g+h)
-        protected GenericNode parentNode;     // noeud parent
-        public List<GenericNode> Children { get; }  // noeuds enfants
+        protected double gCost;
+        /// <summary>
+        /// Estimation heuristique du coût pour atteindre le noeud final (méthode A* non implémentée ici).
+        /// </summary>
+        protected double hCost;
+        /// <summary>
+        /// Coût total (gCost+hCost).
+        /// </summary>
+        public double TotCost { get; protected set; }
+        protected GenericNode parentNode; 
+        /// <summary>
+        /// Liste des noeuds enfants.
+        /// </summary>
+        public List<GenericNode> Children { get; }            
         /// <summary>
         /// Lien vers le graphe contenant le noeud. 
         /// </summary>
@@ -29,6 +38,9 @@ namespace ProjetIA
             Num = num;
         }
 
+        /// <summary>
+        /// Coût du chemin du noeud initial jusqu'à ce noeud.
+        /// </summary>
         public double GCost
         {
             get { return gCost; }
@@ -39,6 +51,9 @@ namespace ProjetIA
             }
         }
 
+        /// <summary>
+        /// Noeud parent.
+        /// </summary>
         public GenericNode ParentNode
         {
             get { return parentNode; }
@@ -66,13 +81,23 @@ namespace ProjetIA
             this.TotCost = GCost + hCost;
         }
 
-        // Méthodes abstrates, donc à surcharger obligatoirement avec override dans une classe fille
-        public abstract bool IsEqual(GenericNode N2);
-        public abstract double GetArcCost(GenericNode N2);
+        public abstract bool IsEqual(GenericNode gn);
+        /// <summary>
+        /// Détermine le coût de l'arc entre le noeud et un noeud gn, en fonction de la matrice d'adjacence définie dans 
+        /// le graphe des noeuds.
+        /// </summary>
+        public abstract double GetArcCost(GenericNode gn);
+        /// <summary>
+        /// Obtient les successeurs du noeud courant dans le graphe.
+        /// </summary>
         public abstract List<GenericNode> GetSuccessors();
+        /// <summary>
+        /// Renvoie le coût heuristique estimé entre deux noeuds. Non implémenté ici.
+        /// </summary>
         public abstract double CalculateHCost();
+        /// <summary>
+        /// Renvoie si le noeud est le noeud de destination du problème de plus court chemin.
+        /// </summary>
         public abstract bool GetEndState();
-        // On peut aussi penser à surcharger ToString() pour afficher correctement un état
-        // c'est utile pour l'affichage du treenode
     }
 }
