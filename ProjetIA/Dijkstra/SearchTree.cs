@@ -11,6 +11,19 @@ namespace ProjetIA
     {
         public List<GenericNode> OpenedNodes { get; set; }
         public List<GenericNode> ClosedNodes { get; set; }
+        private static SearchTree instance;
+
+        public static SearchTree Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new SearchTree();
+
+                return instance;
+            }
+        }
+
 
         private GenericNode SearchInClosed(GenericNode node)
         {

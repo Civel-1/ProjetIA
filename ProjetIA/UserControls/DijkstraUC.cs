@@ -10,12 +10,32 @@ using System.Windows.Forms;
 
 namespace ProjetIA.UserControls
 {
+    /// <summary>
+    /// Cet UC affiche un ensemble de contrôle permettant à l'utilisateur de résoudre un problème
+    /// de plus court chemin à l'aide de l'algorithme de Dijkstra, et d'en obtenir la correction
+    /// générée par un algorithme de résolution programmé.
+    /// </summary>
     public partial class DijkstraUC : UserControl
     {
         private IndexForm mainForm;
+
+        /// <summary>
+        /// Instance du graphe modélisant le problème soumis à l'utilisateur.
+        /// </summary>
         private Graph currentGraph;
+        /// <summary>
+        /// Noeud de départ du problème.
+        /// </summary>
         private NumNode initNode;
+        /// <summary>
+        /// Noeud d'arrivée (résolution du problème).
+        /// </summary>
+        private NumNode endNode;
         private SearchTree dijSolver;
+        /// <summary>
+        /// Liste contenant les listes d'ouverts et de fermés successivement générées par 
+        /// le SearchTree. Les ouverts se toruvent en index pair, les fermés en index impair.
+        /// </summary>
         private List<List<GenericNode>> openedClosedTracker;
         private EvaluationResult evalResult;
         
@@ -23,10 +43,17 @@ namespace ProjetIA.UserControls
         {
             InitializeComponent();
             mainForm = _mainForm;
+
             currentGraph = new Graph();
-            dijSolver = new SearchTree();
+            dijSolver = SearchTree.Instance;
+
             initNode = new NumNode(currentGraph.InitNode, currentGraph);
+            endNode = new NumNode(currentGraph.EndNode, currentGraph);
+
+            //Obtention des listes d'ouverts et de fermés successifs générées par le solveur appliqué 
+            //sur le graphe courant.
             openedClosedTracker = dijSolver.DijkstraSolve(currentGraph, initNode);
+
             evalResult = EvaluationResult.Instance;
             evalResult.DijkstraStatus = EvaluationResult.Status.In_Progress;
         }
@@ -39,15 +66,22 @@ namespace ProjetIA.UserControls
             dijSolver.GetSearchTree(treeViewDijkstra, emptyTree);
             treeViewDijkstra.ExpandAll();
 
-            treeViewDijkstra.LabelEdit = true;
+            //Le remplissage du TreeView par l'utilisateur se fait à l'aide du submitNode button.
+            treeViewDijkstra.LabelEdit = false;
 
             dataGridViewOuvertsFermes.Columns.Add("Opened", "Ouverts");
             dataGridViewOuvertsFermes.Columns.Add("Closed", "Fermés");
             dataGridViewOuvertsFermes.Rows.Add(initNode.ToString(), "");
+
+            labelEndNode.Text = endNode.ToString();
         }
 
+        /// <summary>
+        /// Insertion d'ouverts et de fermés par l'utilisateur dans le DataGridView récapitulatif.
+        /// </summary>
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
+            //index 0 : ouverts, index 1 : fermés
             string[] openedClosedSubmitted = new string[2];
 
             if (textBoxOuverts.Text != "" || textBoxFermes.Text != "")
@@ -62,6 +96,9 @@ namespace ProjetIA.UserControls
             textBoxFermes.Clear();
         }
 
+        /// <summary>
+        /// Fin de l'évaluation, l'utilisateur estime avoir terminé.
+        /// </summary>
         private void buttonEnd_Click(object sender, EventArgs e)
         {
             bool isTreeCorrect = CheckTreeAnswers();
@@ -69,6 +106,8 @@ namespace ProjetIA.UserControls
 
             evalResult.resultDijkstra = 0;
 
+            //Rappel notaion : 2 points pour les listes d'ouverts et de fermés, 1 point 
+            //pour l'arbre de recherche. 0 point en cas d'erreur0
             if (isOpenedClosedCorrect)
                 evalResult.resultDijkstra += 2;
             if (isTreeCorrect)
@@ -79,12 +118,18 @@ namespace ProjetIA.UserControls
             InactivateInteractions();
         }
 
+        /// <summary>
+        /// Remplissage d'un noeud vide dans le TreeView
+        /// </summary>
         private void submitNode_Click(object sender, EventArgs e)
         {
             if(textBoxNode.Text != null && treeViewDijkstra.SelectedNode != null)
                 treeViewDijkstra.SelectedNode.Text = FormatAnswer(textBoxNode.Text);         
         }
 
+        /// <summary>
+        /// Rémanence du noeud sélectionné dans la textBox d'insertion de noeud dans le TreeView.
+        /// </summary>
         private void treeViewDijkstra_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if(treeViewDijkstra.SelectedNode.Text != "...")
@@ -93,19 +138,27 @@ namespace ProjetIA.UserControls
                 textBoxNode.Text = null;
         }
 
+        /// <summary>
+        /// Corrige les réponses données par l'utilisateur dans le TreeView. Retourne un booléen
+        /// validant ou non la justesse des réponses.
+        /// </summary>
         private bool CheckTreeAnswers()
         {
+            //Récupération d'un arbre de recherche correctement rempli par le solveur SearchTree.
             bool emptyTree = false;
             TreeView treeViewCorrection = new TreeView();
             dijSolver.GetSearchTree(treeViewCorrection, emptyTree);
 
+            //Récupération des noeuds des SearchTree. Nécessite l'utilisation de méthodes récursives.
             List<TreeNodeCollection> answeredNodes = new List<TreeNodeCollection>();
             List<TreeNodeCollection> correctNodes = new List<TreeNodeCollection>();
+
             GetAllNodes(treeViewDijkstra.Nodes, answeredNodes);
             GetAllNodes(treeViewCorrection.Nodes, correctNodes);
 
             bool isCorrect = true;
 
+            //Affichage de la correction sur le TreeView.
             for(int i = 0; i < answeredNodes.Count(); i++)
             {
                 for(int j = 0; j < answeredNodes[i].Count; j++)
@@ -124,10 +177,15 @@ namespace ProjetIA.UserControls
             return isCorrect;
         }
 
+        /// <summary>
+        /// Enumère l'ensemble des noeuds d'un TreeView à partir d'un de ses noeuds 
+        /// et les stocke dans une liste de collection de noeuds.
+        /// </summary>
         private void GetAllNodes(TreeNodeCollection nodes, List<TreeNodeCollection> nodesList)
         {
             nodesList.Add(nodes);
 
+            //Parcours récursif du TreeView (collections chaînées de TreeNodes)
             foreach (TreeNode tn in nodes)
             {
                 if (tn.Nodes != null) 
@@ -137,18 +195,29 @@ namespace ProjetIA.UserControls
             }
         }
 
+        /// <summary>
+        /// Corrige les réponses données par l'utilisateur dans le DataGridView sur les ouverts et les fermés. Retourne un booléen
+        /// validant ou non la justesse des réponses.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckOpenedClosedAnswer()
         {
             bool isCorrect = true;
 
+            //Récupération des identifiants alphabétiques des noeuds des ouverts et des fermés corrects générés par le solveur.
+            //Les comparaisons s'effectuent sur les valeurs de ces identifiants.
             List<string> openedClosedIdTracker = GetNodesTrackerId(openedClosedTracker);
 
+            //Index maximal possible pour parcourir conjointement le DataGridView et la liste d'ouverts et de fermés corrects.
             int indexMax = Math.Min(dataGridViewOuvertsFermes.RowCount, openedClosedIdTracker.Count);
 
+            //Affichage de la correction
             for(int i = 0; i < indexMax; i++)
             {
                 for (int j = 0; j < dataGridViewOuvertsFermes.ColumnCount; j++)
                 {
+                    //Les ouverts sont en première colonne du DataGridView et en index pair dans la liste d'ouverts et de fermés corrects.
+                    //Les fermés sont en seconde colonne du DataGridView et en index impair dans la liste d'ouverts et de fermés corrects.
                     if (!(dataGridViewOuvertsFermes.Rows[i].Cells[j].Value as string).Contains(openedClosedIdTracker[2 * i + j]))
                     {
                         dataGridViewOuvertsFermes.Rows[i].Cells[j].Style.ForeColor = Color.Red;
@@ -159,18 +228,27 @@ namespace ProjetIA.UserControls
                 }
             }
 
-            if(indexMax < dataGridViewOuvertsFermes.RowCount)
+            //Si l'utilisateur n'a pas rentré le nombre correct de listes d'ouverts et de fermés, c'est incorrect.
+            if(indexMax != dataGridViewOuvertsFermes.RowCount || indexMax != openedClosedIdTracker.Count)
             {
-                for(int i = indexMax; i < dataGridViewOuvertsFermes.RowCount; i++)
-                    for (int j = 0; j < dataGridViewOuvertsFermes.ColumnCount; j++)
-                        dataGridViewOuvertsFermes.Rows[i].Cells[j].Style.ForeColor = Color.Red;
-   
                 isCorrect = false;
+                //Si il en a entré trop
+                if (indexMax < dataGridViewOuvertsFermes.RowCount)
+                {
+                    //Toutes les listes excédentaires sont corrigées en rouge
+                    for (int i = indexMax; i < dataGridViewOuvertsFermes.RowCount; i++)
+                        for (int j = 0; j < dataGridViewOuvertsFermes.ColumnCount; j++)
+                            dataGridViewOuvertsFermes.Rows[i].Cells[j].Style.ForeColor = Color.Red;
+                }               
             }
 
             return isCorrect;
         }
 
+        /// <summary>
+        /// Retourne la liste des identifiants des noeuds compris dans la liste des ouverts et fermés
+        /// générée par le solveur. Ici, ce sont des lettres de l'alphabet.
+        /// </summary>
         private List<string> GetNodesTrackerId(List<List<GenericNode>> nodesTracker)
         {
             List<string> nodesIdTracker = new List<string>();
@@ -188,6 +266,10 @@ namespace ProjetIA.UserControls
             return nodesIdTracker;
         }
 
+        /// <summary>
+        /// Formate les réponses entrées au clavier par l'utilisateur. Les caractères sont convertis
+        /// en lettres haut-de-casse ou rejetés.
+        /// </summary>
         private string FormatAnswer(string answer)
         {
             char[] alphabet = new char[]
@@ -210,6 +292,9 @@ namespace ProjetIA.UserControls
             return answerChecked;
         }
 
+        /// <summary>
+        /// Inactive les contrôles de l'UC à la fin de l'évaluation. Vide les textBox.
+        /// </summary>
         private void InactivateInteractions()
         {
             dataGridViewOuvertsFermes.Enabled = false;

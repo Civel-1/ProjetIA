@@ -39,6 +39,7 @@
             this.treeViewDijkstra = new System.Windows.Forms.TreeView();
             this.textBoxNode = new System.Windows.Forms.TextBox();
             this.submitNode = new System.Windows.Forms.Button();
+            this.labelEndNode = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOuvertsFermes)).BeginInit();
             this.SuspendLayout();
@@ -145,12 +146,22 @@
             this.submitNode.UseVisualStyleBackColor = true;
             this.submitNode.Click += new System.EventHandler(this.submitNode_Click);
             // 
+            // labelEndNode
+            // 
+            this.labelEndNode.AutoSize = true;
+            this.labelEndNode.Location = new System.Drawing.Point(326, 475);
+            this.labelEndNode.Name = "labelEndNode";
+            this.labelEndNode.Size = new System.Drawing.Size(46, 17);
+            this.labelEndNode.TabIndex = 12;
+            this.labelEndNode.Text = "label1";
+            // 
             // DijkstraUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.labelEndNode);
             this.Controls.Add(this.submitNode);
             this.Controls.Add(this.textBoxNode);
             this.Controls.Add(this.treeViewDijkstra);
@@ -185,5 +196,6 @@
         private System.Windows.Forms.TreeView treeViewDijkstra;
         private System.Windows.Forms.TextBox textBoxNode;
         private System.Windows.Forms.Button submitNode;
+        private System.Windows.Forms.Label labelEndNode;
     }
 }
