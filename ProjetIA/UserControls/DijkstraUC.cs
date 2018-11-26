@@ -74,6 +74,7 @@ namespace ProjetIA.UserControls
             dataGridViewOuvertsFermes.Rows.Add(initNode.ToString(), "");
 
             labelEndNode.Text = endNode.ToString();
+            labelInitNode.Text = initNode.ToString();
         }
 
         /// <summary>
@@ -116,6 +117,23 @@ namespace ProjetIA.UserControls
             evalResult.DijkstraStatus = EvaluationResult.Status.Done;
 
             InactivateInteractions();
+        }
+
+        /// <summary>
+        /// Réinitialise l'UC.
+        /// </summary>
+        private void buttonReInit_Click(object sender, EventArgs e)
+        {
+            dataGridViewOuvertsFermes.Rows.Clear();            
+            dataGridViewOuvertsFermes.Rows.Add(initNode.ToString(), "");
+
+            bool isEmpty = true;
+            dijSolver.GetSearchTree(treeViewDijkstra, isEmpty);
+            treeViewDijkstra.ExpandAll();
+
+            textBoxFermes.Text = null;
+            textBoxOuverts.Text = null;
+            textBoxNode.Text = null;
         }
 
         /// <summary>
@@ -308,6 +326,7 @@ namespace ProjetIA.UserControls
             textBoxNode.Text = null;
             buttonSubmit.Enabled = false;
             submitNode.Enabled = false;
+            buttonReInit.Enabled = false;
         }
     }
 }

@@ -117,4 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Résolvez à la main le problème 
+de plus court chemin au sein du 
+graphe ci-contre.
+Utilisez l'algorithme pour déterminer 
+les différents ensembles d'ouverts et 
+de fermés parcourus au cours de la 
+résolution du problème, et complétez 
+l'arbre de recherche de la solution.</value>
+  </data>
 </root>

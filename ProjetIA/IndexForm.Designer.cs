@@ -30,11 +30,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1232, 703);
+            this.ClientSize = new System.Drawing.Size(1232, 803);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(1250, 750);
-            this.MinimumSize = new System.Drawing.Size(1250, 750);
             this.Name = "IndexForm";
             this.Text = "Evaluation - Intelligence Artificielle";
             this.ResumeLayout(false);
