@@ -147,5 +147,9 @@
   <ItemGroup>
     <None Include="Layout\indexBackGround.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Layout\header.png" />
+    <Content Include="Layout\headerDijkstra.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DijkstraUC));
-            this.imgGraph = new System.Windows.Forms.PictureBox();
             this.textBoxOuverts = new System.Windows.Forms.TextBox();
             this.textBoxFermes = new System.Windows.Forms.TextBox();
             this.dataGridViewOuvertsFermes = new System.Windows.Forms.DataGridView();
@@ -49,20 +48,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.imgGraph = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOuvertsFermes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).BeginInit();
             this.SuspendLayout();
-            // 
-            // imgGraph
-            // 
-            this.imgGraph.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.imgGraph.Location = new System.Drawing.Point(372, 3);
-            this.imgGraph.MaximumSize = new System.Drawing.Size(850, 400);
-            this.imgGraph.Name = "imgGraph";
-            this.imgGraph.Size = new System.Drawing.Size(850, 400);
-            this.imgGraph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgGraph.TabIndex = 1;
-            this.imgGraph.TabStop = false;
             // 
             // textBoxOuverts
             // 
@@ -240,11 +231,33 @@
     "e\r\nchamp correspondant.";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::ProjetIA.Properties.Resources.headerDijkstra;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(27, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(287, 157);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            // 
+            // imgGraph
+            // 
+            this.imgGraph.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.imgGraph.Location = new System.Drawing.Point(372, 3);
+            this.imgGraph.MaximumSize = new System.Drawing.Size(850, 400);
+            this.imgGraph.Name = "imgGraph";
+            this.imgGraph.Size = new System.Drawing.Size(850, 400);
+            this.imgGraph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgGraph.TabIndex = 1;
+            this.imgGraph.TabStop = false;
+            // 
             // DijkstraUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -265,11 +278,13 @@
             this.Controls.Add(this.textBoxFermes);
             this.Controls.Add(this.textBoxOuverts);
             this.Controls.Add(this.imgGraph);
+            this.MinimumSize = new System.Drawing.Size(1250, 850);
             this.Name = "DijkstraUC";
             this.Size = new System.Drawing.Size(1250, 850);
             this.Load += new System.EventHandler(this.DijkstraUC_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOuvertsFermes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgGraph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,5 +312,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

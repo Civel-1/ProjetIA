@@ -73,6 +73,7 @@
             this.Controls.Add(this.labelWelcome);
             this.Controls.Add(this.buttonStartTest);
             this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "IndexUC";
             this.Size = new System.Drawing.Size(1200, 700);
             this.ResumeLayout(false);
