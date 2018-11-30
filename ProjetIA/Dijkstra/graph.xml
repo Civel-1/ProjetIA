@@ -16,9 +16,9 @@ nbnodes : Nombres de noeuds du graphe
 rel : Définit une relation x,y,c entre deux noeuds. x,y : identifiants numériques des noeuds X et Y en relation. c : coût de l'arc XY.
 -->
 <graphs>
-  <graph id="0" default="-1" img="Dijkstra/img/graph1.jpg">
-    <nbnodes>10</nbnodes>
-    <rel>0,3,3</rel>
+  <graph id="0" default="-1" img="Dijkstra/img/graph1.png">
+    <nbnodes>7</nbnodes>
+    <rel>0,1,3</rel>
     <rel>0,2,5</rel>
     <rel>0,3,7</rel>
     <rel>1,4,8</rel>

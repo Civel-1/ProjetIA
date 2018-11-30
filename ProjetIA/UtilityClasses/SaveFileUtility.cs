@@ -120,6 +120,6 @@ namespace ProjetIA.UtilityClasses {
                 .Add(new XElement("Question", new XAttribute("id", questionNumber), result));
             saveFile.Save(pathfile);
         }
-        }
     }
+}
 

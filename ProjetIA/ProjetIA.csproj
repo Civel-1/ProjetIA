@@ -135,11 +135,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dijkstra\img\graph1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Dijkstra\graph.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -148,6 +143,9 @@
     <None Include="Layout\indexBackGround.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dijkstra\img\graph1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Layout\header.png" />
     <Content Include="Layout\headerDijkstra.png" />
   </ItemGroup>
