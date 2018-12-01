@@ -122,7 +122,7 @@
             // labelResultQuestion
             // 
             this.labelResultQuestion.AutoSize = true;
-            this.labelResultQuestion.Location = new System.Drawing.Point(4, 362);
+            this.labelResultQuestion.Location = new System.Drawing.Point(400, 350);
             this.labelResultQuestion.Name = "labelResultQuestion";
             this.labelResultQuestion.Size = new System.Drawing.Size(0, 17);
             this.labelResultQuestion.TabIndex = 13;

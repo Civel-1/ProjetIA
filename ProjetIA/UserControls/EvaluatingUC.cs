@@ -19,7 +19,7 @@ namespace ProjetIA.UserControls {
             //Quelques vérifications quant à l'avancement de l'utilisateur dans l'examen 
             //afin d'afficher ou non ses résultats
             if (evalResult.DijkstraStatus == EvaluationResult.Status.Done ) {
-                labelDijkstraScore.Text = "Note Dijkstra : "+ evalResult.resultDijkstra+"/20";
+                labelDijkstraScore.Text = "Note Dijkstra : "+ evalResult.resultDijkstra+"/3";
                 buttonDijkstra.Enabled = false;
             } else {
                 labelDijkstraScore.Visible = false;
@@ -33,7 +33,7 @@ namespace ProjetIA.UserControls {
             }
 
             if(evalResult.DijkstraStatus == EvaluationResult.Status.Done  && evalResult.QCMStatus == EvaluationResult.Status.Done ) {
-                float finalNote = (mainForm.evalResult.resultQCM + evalResult.resultDijkstra) / 2;
+                float finalNote = ((mainForm.evalResult.resultQCM + evalResult.resultDijkstra) / 23) * 20;
                 labelFinalResult.Text = "Note totale : " + finalNote + "/20";
                 labelEvaluatingText.Text = "Vous avez terminé l'examen.";
             } else {

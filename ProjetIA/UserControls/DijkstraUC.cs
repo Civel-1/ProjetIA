@@ -102,21 +102,30 @@ namespace ProjetIA.UserControls
         /// </summary>
         private void buttonEnd_Click(object sender, EventArgs e)
         {
-            bool isTreeCorrect = CheckTreeAnswers();
-            bool isOpenedClosedCorrect = CheckOpenedClosedAnswer();
+            //si l'utilisateur souhaite terminer
+            if (evalResult.DijkstraStatus != EvaluationResult.Status.Done)
+            {
+                bool isTreeCorrect = CheckTreeAnswers();
+                bool isOpenedClosedCorrect = CheckOpenedClosedAnswer();
 
-            evalResult.resultDijkstra = 0;
+                evalResult.resultDijkstra = 0;
 
-            //Rappel notaion : 2 points pour les listes d'ouverts et de fermés, 1 point 
-            //pour l'arbre de recherche. 0 point en cas d'erreur0
-            if (isOpenedClosedCorrect)
-                evalResult.resultDijkstra += 2;
-            if (isTreeCorrect)
-                evalResult.resultDijkstra += 1;
-            
-            evalResult.DijkstraStatus = EvaluationResult.Status.Done;
+                //Rappel notaion : 2 points pour les listes d'ouverts et de fermés, 1 point 
+                //pour l'arbre de recherche. 0 point en cas d'erreur0
+                if (isOpenedClosedCorrect)
+                    evalResult.resultDijkstra += 2;
+                if (isTreeCorrect)
+                    evalResult.resultDijkstra += 1;
 
-            InactivateInteractions();
+                evalResult.DijkstraStatus = EvaluationResult.Status.Done;
+
+                InactivateInteractions();
+
+                buttonEnd.Text = "Suivant";
+            }
+            //si l'utilisateur a terminé, retour au menu EvaluatingUC
+            else
+            { mainForm.ChangeToEvaluating(); }
         }
 
         /// <summary>
