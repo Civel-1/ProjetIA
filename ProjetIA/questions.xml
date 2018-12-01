@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<questions>
+	<question id="1" >
+		<intitule>Peut-on résoudre un sudoku en utilisant un algorithme génétique ? </intitule>
+		<reponses>
+			<reponse number="1"> Oui, mais cela va durer longtemps</reponse>
+			<reponse number="2"> Oui,de manière efficace</reponse>
+			<reponse number="3"> Non</reponse>
+			<reponse number="4"> Cela dépend de la taille du sudoku</reponse>
+		</reponses>
+		<reponsesAttendues>
+			<reponseAttendue>1</reponseAttendue>
+		</reponsesAttendues>
+	</question>
+	<question id="2" >
+		<intitule>Quels sont les problèmes classiques de l’exploitation des capteurs utilisés en robotique ?</intitule>
+		<reponses>
+			<reponse number="1">Ils perdent en fiabilité en fonction du temps d'acquisition et de leur qualité</reponse>
+			<reponse number="2">Il y a une grande variabilité perceptuelle donc la discrimination est difficile</reponse>
+			
+			
+		</reponses>
+		<reponsesAttendues>
+			<reponseAttendue>2</reponseAttendue>
+		</reponsesAttendues>
+	</question>
+	<question id="3" >
+		<intitule>Comment définit-on un graphe ?</intitule>
+		<reponses>
+			<reponse number="1">Les valeurs de chaque relation</reponse>
+			<reponse number="2">Les relations entre les nœuds</reponse>
+			<reponse number="3">Les nœuds, les sommets </reponse>
+			<reponse number="4">Sa forme</reponse>
+		</reponses>
+		<reponsesAttendues>
+			<reponseAttendue>1</reponseAttendue>
+			<reponseAttendue>2</reponseAttendue>
+			<reponseAttendue>3</reponseAttendue>
+		</reponsesAttendues>
+	</question>
+  <question id="4" >
+    <intitule>Qu’est-ce qu’un graphe connexe ?</intitule>
+    <reponses>
+      <reponse number="1">Les relations entre tous les noeuds ont les même valeurs</reponse>
+      
+      <reponse number="2">On peut trouver un chemin qui lie chaque couple de sommets.</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="5" >
+    <intitule>On peut dire que deux graphes sont isomorphes si : </intitule>
+    <reponses>
+      <reponse number="1">Il y a une correspondance bijective possible entre les sommets du 1er et les sommets du 2ème graphe  </reponse>
+      <reponse number="2">Ils sont identiques en tous points</reponse>
+      <reponse number="3">Ils ont chacun les mêmes relations entre leurs sommets</reponse>
+	  <reponse number="4">Leurs matrice d'adjacences sont identiques</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>1</reponseAttendue>
+	  <reponseAttendue>3</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="6" >
+    <intitule>Quelle est la bonne modélisation pour un algorithme génétique ?    </intitule>
+    <reponses>
+      
+      <reponse number="1">Sélection selon le mode suivant : critère → Mutation → sélection</reponse>
+      <reponse number="2">Sélection selon le mode suivant :   sélection → Mutation →critère</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>1</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="7" >
+    <intitule>Qu’est-ce qu’une matrice d’adjacence ?
+    </intitule>
+    <reponses>
+      <reponse number="1">Un tableau bidimensionnel qui peut être symétrique</reponse>
+      <reponse number="2">Un tableau bidimensionnel avec comme indices les numéros associés à chaque nœud et en valeur dans chaque case la relation liant ces 2 nœuds</reponse>
+     
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+	  <reponseAttendue>1</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="8" >
+    <intitule>Quel est le principe de fonctionnement de l’algorithme Min/Max ?</intitule>
+    <reponses>
+      <reponse number="1">Le meilleur choix est celui qui minimise les pertes du joueur tout en supposant que l'adversaire cherche au contraire à les maximiser</reponse>
+      <reponse number="2">Le meilleur choix est celui qui maximise les pertes de l’adversaire tout en supposant que l'adversaire cherche à les maximiser</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>1</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="9" >
+    <intitule>Quelle est la différence entre Min/Max et alpha beta ?</intitule>
+    <reponses>
+      <reponse number="1">Avec alpha beta on ne développe pas les branches que max ne choisira pas</reponse>
+      <reponse number="2">Avec alpha beta on ne développe pas les branches que min ne choisira pas</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="10" >
+    <intitule>Parmi les propositions suivantes, laquelle/lesquelles ne sont pas des exemples classiques d’utilisation d’algorithmes génétiques ?</intitule>
+    <reponses>
+      <reponse number="1">Trouver les conditions initiales et les règles de survie du jeu de la vie qui convergent vers une forme particulière.</reponse>
+      <reponse number="2">Trouver un visage ou une forme particulière (reconnaissance de forme)</reponse>
+	  </reponses>
+     
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="11" >
+    <intitule> Quel type d’intelligence artificielle (IA) existe aujourd’hui ?</intitule>
+    <reponses>
+      <reponse number="1"> L’IA forte</reponse>
+      <reponse number="2">L’IA faible</reponse>
+      <reponse number="3">Une forme d’IA intermédiaire</reponse>
+	  <reponse number="4">Aucune des propositions</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>3</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="12" >
+    <intitule>Quelles sont les principales liaisons en robotique ?</intitule>
+    <reponses>
+      <reponse number="1"> Liaison rotule</reponse>
+      <reponse number="2"> Liaison linéaire </reponse>
+      <reponse number="3">Liaison glissière </reponse>
+      <reponse number="4">Liaison pivot</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>3</reponseAttendue>
+      <reponseAttendue>4</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="13" >
+    <intitule>Combien faut-il de degré de liberté pour qu’un bras manipulateur puisse accéder à tous les points placés devant lui ?</intitule>
+    <reponses>
+      	<reponse number="1"> 4</reponse>
+      	<reponse number="2">9</reponse>
+      	<reponse number="3">6</reponse>
+	<reponse number="4">12</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>3</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="14" >
+    <intitule>Qu’est ce qu’un coût heuristique ?</intitule>
+    <reponses>
+      <reponse number="1">C’est le coût estimé entre nœud courant et le nœud d’arrivée</reponse>
+      <reponse number="2">C’est le coût estimé entre le nœud courant et le nœud suivant</reponse>
+      <reponse number="3">Un concept exploité par l’algorithme de Dijkstra</reponse>
+      <reponse number="4">Un concept utilisé par A*</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>1</reponseAttendue>
+      <reponseAttendue>4</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="15" >
+    <intitule>Que permet une liaison pivot ?
+    </intitule>
+    <reponses>
+      <reponse number="1"> Translation</reponse>
+      <reponse number="2">Rotation </reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="16" >
+    <intitule>Quelle est l’hypothèse majeure faite quand on utilise l’algorithme alpha beta ?</intitule>
+    <reponses>
+      <reponse number="1">L’adversaire joue au hasard</reponse>
+      <reponse number="2">L’adversaire joue au mieux</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="17" >
+    <intitule>L'algorithme de Dijkstra permet-il de trouver le plus court chemin si on l'applique à un graphe dans lequel on a associé à certains arcs une valeur négative ?</intitule>
+    <reponses>
+      <reponse number="1">Oui</reponse>
+      <reponse number="2">Non</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="18" >
+    <intitule>Le sudoku est un problème de satisfaction de contraintes</intitule>
+    <reponses>
+      <reponse number="1"> Oui</reponse>
+      <reponse number="2">Non</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>1</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="19" >
+    <intitule>Dijkstra prend en compte le contexte ou des informations de haut niveau pour guider la recherche</intitule>
+    <reponses>
+      <reponse number="1"> Vrai</reponse>
+      <reponse number="2">Faux</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+  <question id="20" >
+    <intitule>Si un graphe n’est pas orienté, sa matrice d’adjacence est :</intitule>
+    <reponses>
+      <reponse number="1"> Diagonale</reponse>
+      <reponse number="2">Symétrique</reponse>
+      <reponse number="3">Réflexive</reponse>
+	  <reponse number="4">Nulle</reponse>
+    </reponses>
+    <reponsesAttendues>
+      <reponseAttendue>2</reponseAttendue>
+    </reponsesAttendues>
+  </question>
+	
+</questions>
+			
+	     
