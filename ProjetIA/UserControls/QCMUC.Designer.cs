@@ -40,7 +40,7 @@
             // checkBoxAnswer1
             // 
             this.checkBoxAnswer1.AutoSize = true;
-            this.checkBoxAnswer1.Location = new System.Drawing.Point(354, 468);
+            this.checkBoxAnswer1.Location = new System.Drawing.Point(132, 415);
             this.checkBoxAnswer1.Name = "checkBoxAnswer1";
             this.checkBoxAnswer1.Size = new System.Drawing.Size(18, 17);
             this.checkBoxAnswer1.TabIndex = 4;
@@ -50,7 +50,7 @@
             // checkBoxAnswer2
             // 
             this.checkBoxAnswer2.AutoSize = true;
-            this.checkBoxAnswer2.Location = new System.Drawing.Point(636, 468);
+            this.checkBoxAnswer2.Location = new System.Drawing.Point(132, 459);
             this.checkBoxAnswer2.Name = "checkBoxAnswer2";
             this.checkBoxAnswer2.Size = new System.Drawing.Size(18, 17);
             this.checkBoxAnswer2.TabIndex = 5;
@@ -60,7 +60,7 @@
             // checkBoxAnswer3
             // 
             this.checkBoxAnswer3.AutoSize = true;
-            this.checkBoxAnswer3.Location = new System.Drawing.Point(354, 529);
+            this.checkBoxAnswer3.Location = new System.Drawing.Point(132, 497);
             this.checkBoxAnswer3.Name = "checkBoxAnswer3";
             this.checkBoxAnswer3.Size = new System.Drawing.Size(18, 17);
             this.checkBoxAnswer3.TabIndex = 6;
@@ -70,7 +70,7 @@
             // checkBoxAnswer4
             // 
             this.checkBoxAnswer4.AutoSize = true;
-            this.checkBoxAnswer4.Location = new System.Drawing.Point(636, 529);
+            this.checkBoxAnswer4.Location = new System.Drawing.Point(132, 536);
             this.checkBoxAnswer4.Name = "checkBoxAnswer4";
             this.checkBoxAnswer4.Size = new System.Drawing.Size(18, 17);
             this.checkBoxAnswer4.TabIndex = 7;
@@ -101,7 +101,7 @@
             // 
             this.labelMissingAnswer.AutoSize = true;
             this.labelMissingAnswer.ForeColor = System.Drawing.Color.Red;
-            this.labelMissingAnswer.Location = new System.Drawing.Point(657, 428);
+            this.labelMissingAnswer.Location = new System.Drawing.Point(347, 375);
             this.labelMissingAnswer.Name = "labelMissingAnswer";
             this.labelMissingAnswer.Size = new System.Drawing.Size(213, 17);
             this.labelMissingAnswer.TabIndex = 11;
@@ -130,7 +130,7 @@
             // labelMultipleAnswer
             // 
             this.labelMultipleAnswer.AutoSize = true;
-            this.labelMultipleAnswer.Location = new System.Drawing.Point(327, 428);
+            this.labelMultipleAnswer.Location = new System.Drawing.Point(129, 375);
             this.labelMultipleAnswer.Name = "labelMultipleAnswer";
             this.labelMultipleAnswer.Size = new System.Drawing.Size(198, 17);
             this.labelMultipleAnswer.TabIndex = 14;

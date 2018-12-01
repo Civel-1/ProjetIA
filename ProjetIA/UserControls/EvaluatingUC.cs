@@ -35,6 +35,7 @@ namespace ProjetIA.UserControls {
             if(evalResult.DijkstraStatus == EvaluationResult.Status.Done  && evalResult.QCMStatus == EvaluationResult.Status.Done ) {
                 float finalNote = (mainForm.evalResult.resultQCM + evalResult.resultDijkstra) / 2;
                 labelFinalResult.Text = "Note totale : " + finalNote + "/20";
+                labelEvaluatingText.Text = "Vous avez terminé l'examen.";
             } else {
                 labelFinalResult.Text = "";
             }
